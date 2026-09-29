@@ -264,3 +264,19 @@ button.ac:not(.fu):hover{opacity:1;transform:scale(1.18)}
   #sb.open{left:0}.col .lb{display:inline}.col .nav{justify-content:flex-start;padding:4px 10px}.col .ni-w{width:50px}.col .brand{justify-content:flex-start}
   .hb{display:grid}.mn{padding:12px}.top .cl{display:none}.top .sp{display:none}.top{gap:8px}.ib{width:42px;height:42px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* ===================== TEZLIK (performance) ===================== */
+/* Katta blur filtri va doimiy harakatlanuvchi fon sekinlashtirardi: yumshoq gradient blur'siz ham bir xil ko'rinadi */
+body::before,body::after{filter:none;will-change:transform;animation-duration:40s}
+.ni,.ii,.hi,.lc img{will-change:auto}
+img{content-visibility:auto}
+@media (max-width:900px),(hover:none){
+  /* Telefon va planshet: og'ir effektlarni o'chirib, silliq ishlashni ta'minlaymiz */
+  body::before,body::after{animation:none}
+  .ni,.ii,.lc,.lc::before,.lc::after,.lc img{animation:none!important}
+  .card,.ib,.srch input,.pf,.t,.dd,.pp,.mo{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+  .card,.dd,.pp{background:var(--card)}
+  .ni,.ii,.hi{filter:none!important}
+  *{scroll-behavior:auto!important}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}

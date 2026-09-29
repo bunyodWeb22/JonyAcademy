@@ -1,5 +1,5 @@
 
-const LOGO="assets/logo.png";
+const LOGO="assets/logo.webp";
 const $=s=>document.querySelector(s),K='jony_school_v1';
 const fmt=n=>Math.round(+n).toLocaleString('ru-RU').replace(/,/g,' ');
 const ld=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'),td=()=>ld(new Date());
@@ -15,8 +15,8 @@ const save=()=>{try{localStorage.setItem(K,JSON.stringify(D))}catch(e){}};
 const nid=a=>a.reduce((m,x)=>Math.max(m,x.id),0)+1;
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const IC={home:'home',students:'students',groups:'groups',courses:'courses',teachers:'teachers',att:'attendance',pay:'payments',rep:'reports',ann:'announcements',msgs:'contact',media:'media',cal:'calendar',an:'analytics',adm:'admin',logs:'logs',out:'logout',money:'money',warn:'warning',chk:'check',clk:'clock',crs:'cross',bell:'bell',sun:'sun'};
-const ii=(k,c='ii')=>`<img class="${c}" src="assets/icons/${IC[k]}.png" alt="" draggable="false">`,hi=k=>ii(k,'hi');
-const ico=(k,e)=>IC[k]?`<img class="ni" src="assets/icons/${IC[k]}.png" alt="" draggable="false">`:e;
+const ii=(k,c='ii')=>`<img class="${c}" width="44" height="44" decoding="async" src="assets/icons/${IC[k]}.webp" alt="" draggable="false">`,hi=k=>ii(k,'hi');
+const ico=(k,e)=>IC[k]?`<img class="ni" decoding="async" src="assets/icons/${IC[k]}.webp" alt="" draggable="false">`:e;
 const dkey=(y,m,d)=>y+'-'+String(m+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');
 const pno=()=>'№'+String(D.pay.reduce((m,p)=>Math.max(m,parseInt(String(p.no).replace(/\D/g,''))||0),0)+1).padStart(5,'0');
 // notifications: har bir foydalanuvchi uchun alohida (o‘qilgan / tozalangan). to:'staff' = barcha admin panel foydalanuvchilari (Super Admin ham, keyin qo‘shilganlar ham)
@@ -172,7 +172,7 @@ function dpay(i){if(!D.perm[U.prole].Delete){toast('⚠️ Sizda o‘chirish huq
 ask({t:'Chek o‘chirilsinmi?',m:p.amount<0?'Qaytarish cheki o‘chiriladi va '+fmt(-p.amount)+' so‘m o‘quvchiga qayta yoziladi.':'To‘lov summasi o‘quvchidan ayiriladi.',y:'Ha, o‘chirish'},()=>{const j=D.pay.indexOf(p),st=D.students.find(x=>x.id==p.sid)||D.students.find(x=>x.name==p.name);if(st)st.paid=Math.max(0,st.paid-p.amount);D.pay.splice(j,1);log('To‘lov o‘chirildi',p.name,fmt(p.amount),'0');render();toast('✅ O‘chirildi')})}
 function rs(w){ask({t:w?'Bo‘sh boshlansinmi?':'Namuna ma’lumot tiklansinmi?',m:w?'Barcha ma’lumot o‘chirilib, bo‘sh boshlanadi.':'Hozirgi ma’lumotlar namunaviy ma’lumotga almashtiriladi.',y:'Davom etish',i:'♻️'},()=>{const u=D.users,pm=D.perm,ct=D.contact;if(w){D={students:[],groups:[],teachers:[],courses:[],ann:[],msgs:[],pay:[],att:{},logs:[],notes:[],media:[],ev:[],users:u,perm:pm}}else{D=seed();D.media=[];D.ev=[];D.users=u;D.perm=pm}D.contact=ct;save();render();toast('✅ Bajarildi')})}
 const pc=v=>v==null?'—':v+'%';
-const lg=z=>`<span class="lc" style="width:${z}px;height:${z}px;--ph:-${(performance.now()/1000%6).toFixed(2)}s"><img src="${LOGO}" alt=""></span>`;
+const lg=z=>`<span class="lc" style="width:${z}px;height:${z}px;--ph:-${(performance.now()/1000%6).toFixed(2)}s"><img src="${LOGO}" alt="" decoding="async"></span>`;
 function upd(){const b=$('#bd');if(b)b.textContent='🗑 O‘chirish ('+SEL.size+')';b.hidden=!SEL.size}
 function sel(id,c){c?SEL.add(id):SEL.delete(id);upd()}
 function selAll(c){VIS.forEach(id=>c?SEL.add(id):SEL.delete(id));stTb()}
